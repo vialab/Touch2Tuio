@@ -48,7 +48,7 @@ extern bool			g_detect_screen_size;
 const unsigned int TIMER_IDENTIFIER(123);
 const unsigned int TIMER_CALL_TIME(100);
 const unsigned int MAX_CURSOR_IDLE_TIME(300);
-const ULONG TOUCH_FLAGS(/*TWF_FINETOUCH|*/TWF_WANTPALM);
+//const ULONG TOUCH_FLAGS(/*TWF_FINETOUCH|*/TWF_WANTPALM);
 
 bool				s_initialized(false);
 HANDLE				s_out(0);
@@ -134,6 +134,7 @@ TOUCHHOOK_API bool InstallHookFromWindowTitle(const char *windowTitle)
 		return false;
 
 	unsigned long threadId = GetWindowThreadProcessId(g_targetWnd, 0);
+
 	if (!threadId)
 		return false;
 
@@ -220,10 +221,39 @@ LRESULT CALLBACK GetMsgProc(int nCode, WPARAM wParam, LPARAM lParam)
 
 			// register everything for touch
 			// Note: pretty ugly but seems to be the only possibility to register every window
-			RegisterTouchWindow(msg->hwnd, TOUCH_FLAGS);
-
+			RegisterTouchWindow(msg->hwnd, 0);
+			
 			switch (msg->message)
 			{
+			case WM_POINTERUP:
+				{
+					s_server->initFrame(TUIO::TuioTime::getSessionTime());
+					s_server->removeTuioCursor((*s_cursors)[GET_POINTERID_WPARAM(msg->wParam)]); 
+					s_server->commitFrame();
+					std::map<DWORD, TUIO::TuioCursor*>::iterator cursorIt = s_cursors->find(GET_POINTERID_WPARAM(msg->wParam));
+					s_cursors->erase(cursorIt);
+				}
+				break;
+			case WM_POINTERDOWN:
+				{
+					s_server->initFrame(TUIO::TuioTime::getSessionTime());
+					POINTS p = MAKEPOINTS(msg->lParam);
+					(*s_cursors)[GET_POINTERID_WPARAM(msg->wParam)] = s_server->addTuioCursor(
+															((p.x)+g_screen_offsetX)/(float)(g_screen_width+g_screen_offsetX),
+															((p.y)+g_screen_offsetY)/(float)(g_screen_height+g_screen_offsetY));
+					s_server->commitFrame();
+				}
+				break;
+			case WM_POINTERUPDATE:
+				{
+					s_server->initFrame(TUIO::TuioTime::getSessionTime());
+					POINTS p = MAKEPOINTS(msg->lParam);
+					s_server->updateTuioCursor((*s_cursors)[GET_POINTERID_WPARAM(msg->wParam)],
+												((p.x)+g_screen_offsetX)/(float)(g_screen_width+g_screen_offsetX),
+												((p.y)+g_screen_offsetY)/(float)(g_screen_height+g_screen_offsetY));
+					s_server->commitFrame();
+				}
+				break;
 			case WM_TOUCH:
 				{
 					sprintf_s(s_buf, "Touches received:\n");
@@ -253,8 +283,11 @@ LRESULT CALLBACK GetMsgProc(int nCode, WPARAM wParam, LPARAM lParam)
 									s_server->updateTuioCursor(cursorIt->second,
 															   ((pInputs[i].x*0.01f)+g_screen_offsetX)/(float)(g_screen_width+g_screen_offsetX),
 															   ((pInputs[i].y*0.01f)+g_screen_offsetY)/(float)(g_screen_height+g_screen_offsetY));
-									(*s_cursorBuf)[pInputs[i].dwID] = cursorIt->second;
-									s_cursors->erase(cursorIt);
+									if(!(pInputs[i].dwFlags & TOUCHEVENTF_UP))
+									{
+										(*s_cursorBuf)[pInputs[i].dwID] = cursorIt->second;
+										s_cursors->erase(cursorIt);
+									}
 								}
 								else
 								{
@@ -265,7 +298,7 @@ LRESULT CALLBACK GetMsgProc(int nCode, WPARAM wParam, LPARAM lParam)
 								}
 							}
 							
-							for (std::map<DWORD, TUIO::TuioCursor*>::iterator it = s_cursors->begin(); it != s_cursors->end(); ++it)
+							for (std::map<DWORD, TUIO::TuioCursor*>::iterator it = s_cursors->begin(); it != s_cursors->end(); it++)
 							{
 								s_server->removeTuioCursor(it->second);
 							}

@@ -48,7 +48,7 @@ UdpSender::UdpSender(const char *host, int port) {
 		}
 		long unsigned int ip = GetHostByName(host);
 		socket = new UdpTransmitSocket(IpEndpointName(ip, port));
-		std::cout << "TUIO/UDP messages to " << host << "@" << port << std::endl;
+		//std::cout << "TUIO/UDP messages to " << host << "@" << port << std::endl;
 	} catch (std::exception &e) { 
 		std::cout << "could not create UDP socket" << std::endl;
 		socket = NULL;
