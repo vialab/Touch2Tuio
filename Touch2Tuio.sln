@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Touch2Tuio", "Touch2Tuio\Touch2Tuio.vcproj", "{59A020B3-22C8-49AF-B155-37B2DEAA742C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D0C6958E-CB82-4E8C-8684-120B2FB4B5D0} = {D0C6958E-CB82-4E8C-8684-120B2FB4B5D0}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TouchHook", "TouchHook\TouchHook.vcproj", "{D0C6958E-CB82-4E8C-8684-120B2FB4B5D0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{28CE88AE-F7E5-4BF0-87B5-1784C682303E} = {28CE88AE-F7E5-4BF0-87B5-1784C682303E}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TuioServer", "TuioServer\TuioServer.vcproj", "{28CE88AE-F7E5-4BF0-87B5-1784C682303E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Debug|x64 = Debug|x64
+		Release|Win32 = Release|Win32
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{59A020B3-22C8-49AF-B155-37B2DEAA742C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{59A020B3-22C8-49AF-B155-37B2DEAA742C}.Debug|Win32.Build.0 = Debug|Win32
+		{59A020B3-22C8-49AF-B155-37B2DEAA742C}.Debug|x64.ActiveCfg = Debug|x64
+		{59A020B3-22C8-49AF-B155-37B2DEAA742C}.Debug|x64.Build.0 = Debug|x64
+		{59A020B3-22C8-49AF-B155-37B2DEAA742C}.Release|Win32.ActiveCfg = Release|Win32
+		{59A020B3-22C8-49AF-B155-37B2DEAA742C}.Release|Win32.Build.0 = Release|Win32
+		{59A020B3-22C8-49AF-B155-37B2DEAA742C}.Release|x64.ActiveCfg = Release|x64
+		{59A020B3-22C8-49AF-B155-37B2DEAA742C}.Release|x64.Build.0 = Release|x64
+		{D0C6958E-CB82-4E8C-8684-120B2FB4B5D0}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D0C6958E-CB82-4E8C-8684-120B2FB4B5D0}.Debug|Win32.Build.0 = Debug|Win32
+		{D0C6958E-CB82-4E8C-8684-120B2FB4B5D0}.Debug|x64.ActiveCfg = Debug|x64
+		{D0C6958E-CB82-4E8C-8684-120B2FB4B5D0}.Debug|x64.Build.0 = Debug|x64
+		{D0C6958E-CB82-4E8C-8684-120B2FB4B5D0}.Release|Win32.ActiveCfg = Release|Win32
+		{D0C6958E-CB82-4E8C-8684-120B2FB4B5D0}.Release|Win32.Build.0 = Release|Win32
+		{D0C6958E-CB82-4E8C-8684-120B2FB4B5D0}.Release|x64.ActiveCfg = Release|x64
+		{D0C6958E-CB82-4E8C-8684-120B2FB4B5D0}.Release|x64.Build.0 = Release|x64
+		{28CE88AE-F7E5-4BF0-87B5-1784C682303E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{28CE88AE-F7E5-4BF0-87B5-1784C682303E}.Debug|Win32.Build.0 = Debug|Win32
+		{28CE88AE-F7E5-4BF0-87B5-1784C682303E}.Debug|x64.ActiveCfg = Debug|x64
+		{28CE88AE-F7E5-4BF0-87B5-1784C682303E}.Debug|x64.Build.0 = Debug|x64
+		{28CE88AE-F7E5-4BF0-87B5-1784C682303E}.Release|Win32.ActiveCfg = Release|Win32
+		{28CE88AE-F7E5-4BF0-87B5-1784C682303E}.Release|Win32.Build.0 = Release|Win32
+		{28CE88AE-F7E5-4BF0-87B5-1784C682303E}.Release|x64.ActiveCfg = Release|x64
+		{28CE88AE-F7E5-4BF0-87B5-1784C682303E}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
