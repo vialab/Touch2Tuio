@@ -153,6 +153,10 @@ TOUCHHOOK_API bool RemoveHook(void)
 	BOOL ret2 = UnhookWindowsHookEx(g_mouseHook);
 	g_mouseHook = 0;
 
+	//make sure to clear everything on remove
+	g_targetWnd = NULL;
+	s_windows.reset();
+
 	return (ret1 && ret2);
 }
 
