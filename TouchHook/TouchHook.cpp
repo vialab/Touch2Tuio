@@ -48,7 +48,7 @@ extern bool			g_detect_screen_size;
 const unsigned int TIMER_IDENTIFIER(123);
 const unsigned int TIMER_CALL_TIME(100);
 const unsigned int MAX_CURSOR_IDLE_TIME(300);
-//const ULONG TOUCH_FLAGS(/*TWF_FINETOUCH|*/TWF_WANTPALM);
+const ULONG TOUCH_FLAGS_2(/*TWF_FINETOUCH|*/TWF_WANTPALM);
 
 bool				s_initialized(false);
 HANDLE				s_out(0);
@@ -225,7 +225,7 @@ LRESULT CALLBACK GetMsgProc(int nCode, WPARAM wParam, LPARAM lParam)
 
 			// register everything for touch
 			// Note: pretty ugly but seems to be the only possibility to register every window
-			RegisterTouchWindow(msg->hwnd, 0);
+			RegisterTouchWindow(msg->hwnd, TOUCH_FLAGS_2);
 			
 			switch (msg->message)
 			{
