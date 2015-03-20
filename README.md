@@ -1,7 +1,7 @@
 Touch2Tuio
 ==========
 
-Touch2Tuio source for executables shipped in vialab/SMT, based on http://dm.tzi.de/research/hci/touch2tuio/
+Touch2Tuio source for executables shipped in vialab/SMT, based on the original Touch2Tuio from [http://dm.tzi.de/en/touch2tuio/](http://dm.tzi.de/en/touch2tuio/)
 
 Added support for Windows 8
 
