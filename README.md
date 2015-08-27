@@ -57,4 +57,4 @@ You need the 32-bit Touch2Tuio version for 32-bit TUIO clients (even on 64-bit s
 Contact:
 
 Marc or Benjamin
-http://dm.tzi.de/research/hci/touch2tuio/
+http://dm.tzi.de/touch2tuio/
